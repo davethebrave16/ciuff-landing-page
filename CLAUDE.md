@@ -34,15 +34,18 @@ src/
     BenefitsSection.astro   — 4-card benefits grid
     PricingSection.astro    — 3 pricing tier buttons (data-tier="prova|gruppo|festa")
     EmailSignup.astro       — signup form + confirmation card, section id="iscriviti"
-    SiteFooter.astro
+    SiteFooter.astro         — links to /privacy-policy and /cookie-policy
+    CookieBanner.astro      — consent banner, gates Google Analytics loading (see below)
     icons/
       Drop.astro             — reusable droplet SVG (props: size, dropColor, splashColor?)
   scripts/
     interactions.js         — vanilla JS: pricing tier selection, email form submit/confirmation swap
   pages/
-    index.astro              — assembles all sections + loads interactions.js
+    index.astro              — assembles all sections + loads interactions.js + <CookieBanner />
+    privacy-policy.astro    — legal page, reuses SiteHeader/SiteFooter, prose via .legal-content
+    cookie-policy.astro     — legal page, same pattern, includes cookie tables
   styles/
-    global.css               — design tokens (colors), font-family base, .disp utility, tier-card/signup-form states
+    global.css               — design tokens (colors), font-family base, .disp utility, tier-card/signup-form states, .legal-content prose styles
 public/
   ciuff-icona-trasparente.png — source logo mark (droplet + lime dot), all favicons/touch-icons were generated from this
   favicon.svg, favicon.ico, favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png, android-chrome-192x192.png, android-chrome-512x512.png, site.webmanifest
@@ -71,3 +74,10 @@ There's no build step tying the tier metadata together — `PricingSection.astro
 - `astro.config.mjs` sets `site: 'https://ciuff.it'` — this is the production domain and is required for `Astro.site`-based absolute URLs (canonical, OG/Twitter image) and for `@astrojs/sitemap` to emit correct URLs. If the domain ever changes, update it here (and in `public/robots.txt`'s `Sitemap:` line, which is a static file and isn't generated from `site`).
 - `BaseLayout.astro` builds `canonicalUrl` and `resolvedOgImage` from `Astro.site` + `Astro.url.pathname` / the `ogImage` prop (defaults to `/og-image.jpg`) — pass a different `ogImage` prop if a future page needs its own preview image.
 - If the logo changes, regenerate the favicon set from the new source image (crop to content bbox, pad into a square, export the sizes listed above) rather than hand-editing the PNGs.
+
+## Cookie consent & legal pages
+
+- `CookieBanner.astro` renders a fixed bottom banner (hidden by default) and gates Google Analytics: the `gtag.js` script tag is only injected into `<head>` after the visitor clicks **Accetta**, or on a later visit if the `ciuff_cookie_consent` cookie already says `accepted`. Clicking **Rifiuta** sets the cookie to `rejected` and nothing further loads. The cookie is set for 180 days via `document.cookie`, not a library.
+- The GA4 measurement ID (`G-VF5LV1J8DF`) is a const at the top of `CookieBanner.astro` — update it there if the property ever changes.
+- `privacy-policy.astro` and `cookie-policy.astro` are real routes (`/privacy-policy`, `/cookie-policy`), not markdown-rendered — content was hand-converted from the legal team's `.md` drafts into the `.legal-content` prose layout. Several fields are still placeholders, wrapped in `<span class="tbd">[...]</span>` so they render with a visible highlight until filled in: the "last updated" date on both pages, the data controller's name and contact email and the GA4 data-retention period on the privacy policy. Don't invent values for these — ask before filling them in.
+- If GA4 tracking changes (new events, different retention, etc.), keep `cookie-policy.astro`'s cookie table in sync.

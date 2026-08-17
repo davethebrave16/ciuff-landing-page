@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+---
+
+<BaseLayout
+	title="Privacy Policy — CIUFF"
+	description="Informativa sulla privacy del sito CIUFF."
+>
+	<SiteHeader />
+
+	<article class="legal-content">
+		<h1>Privacy Policy — CIUFF</h1>
+		<p class="legal-updated">Ultimo aggiornamento: <span class="tbd">[inserire data]</span></p>
+
+		<h2>Titolare del trattamento</h2>
+		<p>
+			<span class="tbd">[Nome e Cognome / eventuale ragione sociale]</span><br />
+			Email di contatto: <span class="tbd">[inserire email]</span>
+		</p>
+
+		<h2>Cos'è questo sito</h2>
+		<p>
+			CIUFF (il "Sito") è una pagina informativa relativa a un concept di prodotto in fase di
+			validazione. Il Sito non vende prodotti né elabora pagamenti: raccoglie esclusivamente
+			manifestazioni di interesse tramite un modulo di iscrizione.
+		</p>
+
+		<h2>Quali dati raccogliamo</h2>
+
+		<h3>1. Dati forniti volontariamente dall'utente</h3>
+		<p>
+			Se decidi di iscriverti tramite il modulo presente sul Sito, raccogliamo il tuo
+			<strong>indirizzo email</strong> e, se selezionato, il <strong>set di prodotto preferito</strong>.
+			Il modulo è gestito tramite Google Forms; i dati vengono quindi trattati anche da Google LLC
+			secondo la propria informativa privacy
+			(<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+				>policies.google.com/privacy</a
+			>).
+		</p>
+
+		<h3>2. Dati raccolti automaticamente tramite Google Analytics</h3>
+		<p>
+			Il Sito utilizza Google Analytics (GA4) per comprendere in forma aggregata come i visitatori
+			interagiscono con la pagina (es. numero di visite, provenienza del traffico, pagine
+			visualizzate). Questo servizio può raccogliere l'indirizzo IP (in forma
+			abbreviata/anonimizzata ove tecnicamente configurato), il tipo di dispositivo e browser, e il
+			comportamento di navigazione. Questi dati vengono trattati da Google LLC in qualità di
+			responsabile del trattamento.
+		</p>
+		<p>
+			Questo tracciamento è attivo <strong>solo se presti consenso tramite il banner cookie</strong>
+			presente sul Sito.
+		</p>
+
+		<h2>Finalità del trattamento</h2>
+		<ul>
+			<li>Rispondere alla tua richiesta di essere avvisato in caso di lancio del prodotto</li>
+			<li>
+				Comprendere in forma aggregata l'interesse verso il progetto (numero di iscritti,
+				preferenze di set)
+			</li>
+			<li>
+				Analizzare in forma statistica il traffico del Sito, per migliorare contenuti e
+				comunicazione
+			</li>
+		</ul>
+
+		<h2>Base giuridica</h2>
+		<ul>
+			<li>
+				Per l'iscrizione via form: <strong>consenso dell'interessato</strong> (art. 6.1.a GDPR),
+				espresso tramite la casella di consenso presente nel modulo
+			</li>
+			<li>
+				Per Google Analytics: <strong>consenso dell'interessato</strong>, espresso tramite il
+				banner cookie
+			</li>
+		</ul>
+
+		<h2>Conservazione dei dati</h2>
+		<ul>
+			<li>
+				I dati raccolti tramite il modulo di iscrizione vengono conservati fino al lancio del
+				prodotto o comunque non oltre 24 mesi dalla raccolta, salvo richiesta di cancellazione
+				anticipata da parte tua
+			</li>
+			<li>
+				I dati di Google Analytics vengono conservati secondo la configurazione impostata nella
+				property GA4 (attualmente: <span class="tbd">[inserire periodo scelto, es. 2 mesi]</span>)
+			</li>
+		</ul>
+
+		<h2>Diritti dell'interessato</h2>
+		<p>Puoi in qualsiasi momento richiedere:</p>
+		<ul>
+			<li>accesso ai tuoi dati</li>
+			<li>rettifica o cancellazione</li>
+			<li>revoca del consenso (senza pregiudicare la liceità del trattamento già effettuato)</li>
+			<li>opposizione al trattamento</li>
+		</ul>
+		<p>Per esercitare questi diritti scrivi a: <span class="tbd">[inserire email]</span></p>
+		<p>
+			Hai inoltre diritto di proporre reclamo al Garante per la Protezione dei Dati Personali
+			(<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer"
+				>www.garanteprivacy.it</a
+			>).
+		</p>
+
+		<h2>Destinatari dei dati</h2>
+		<p>I tuoi dati possono essere trattati da:</p>
+		<ul>
+			<li>
+				Google LLC (Google Forms, Google Analytics), in qualità di responsabile/subresponsabile
+				del trattamento, anche con trasferimento verso paesi extra-UE sulla base delle clausole
+				contrattuali standard adottate da Google
+			</li>
+		</ul>
+
+		<h2>Modifiche a questa informativa</h2>
+		<p>
+			Questa informativa potrà essere aggiornata in futuro, in particolare qualora il progetto
+			evolva verso una vendita effettiva del prodotto. La versione aggiornata sarà sempre
+			disponibile a questo indirizzo.
+		</p>
+	</article>
+
+	<SiteFooter />
+</BaseLayout>

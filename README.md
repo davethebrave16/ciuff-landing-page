@@ -36,6 +36,7 @@ Builds the site and deploys it to Firebase Hosting, after a confirmation prompt.
 ## Routes
 
 - `/` — homepage: header, hero, problem, benefits, pricing, email signup, footer (see [CLAUDE.md](CLAUDE.md) for the component breakdown)
+- `/privacy-policy`, `/cookie-policy` — legal pages, linked from the footer and the cookie banner
 
 ## Design
 
@@ -47,6 +48,10 @@ Builds the site and deploys it to Firebase Hosting, after a confirmation prompt.
 ## Interactivity
 
 Pricing tier selection and the email signup form are plain vanilla JS (`src/scripts/interactions.js`) — no framework, no backend. Submitting the email form swaps the form for a confirmation message client-side only; nothing is sent anywhere yet.
+
+## Cookie consent
+
+A bottom banner (`src/components/CookieBanner.astro`) offers **Accetta**/**Rifiuta**. Google Analytics (GA4, `G-VF5LV1J8DF`) is only loaded after the visitor accepts — never before, and never at all if they reject. The choice is stored in a `ciuff_cookie_consent` cookie for 180 days. **Some legal-page text is still placeholder** (dates, contact email, GA data-retention period) — look for the highlighted `[...]` text on `/privacy-policy` and `/cookie-policy` and fill it in before launch.
 
 ## SEO & social sharing
 

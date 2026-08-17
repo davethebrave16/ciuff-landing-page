@@ -1,0 +1,130 @@
+---
+const GA_MEASUREMENT_ID = 'G-VF5LV1J8DF'
+---
+
+<div id="ciuff-cookie-banner">
+	<p>
+		Usiamo cookie tecnici necessari al funzionamento del sito e, solo con il tuo consenso, cookie
+		di analisi statistica (Google Analytics) per capire come viene usata questa pagina. Leggi la
+		<a href="/privacy-policy">Privacy Policy</a> e la <a href="/cookie-policy">Cookie Policy</a>.
+	</p>
+	<div class="ciuff-cookie-actions">
+		<button type="button" class="ciuff-cookie-btn ciuff-cookie-accept" id="ciuff-cookie-accept">
+			Accetta
+		</button>
+		<button type="button" class="ciuff-cookie-btn ciuff-cookie-reject" id="ciuff-cookie-reject">
+			Rifiuta
+		</button>
+	</div>
+</div>
+
+<style>
+	#ciuff-cookie-banner {
+		position: fixed;
+		left: 20px;
+		right: 20px;
+		bottom: 20px;
+		z-index: 9999;
+		max-width: 640px;
+		margin: 0 auto;
+		background: #0e3b43;
+		border: 1px solid rgba(234, 242, 239, 0.16);
+		border-radius: 18px;
+		padding: 22px 24px;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+		font-family: 'Space Grotesk', sans-serif;
+		color: #eaf2ef;
+		display: none;
+	}
+
+	#ciuff-cookie-banner.show {
+		display: block;
+	}
+
+	#ciuff-cookie-banner p {
+		font-size: 14px;
+		line-height: 1.6;
+		margin: 0 0 16px;
+		color: rgba(234, 242, 239, 0.85);
+	}
+
+	#ciuff-cookie-banner a {
+		color: #c4e538;
+		text-decoration: underline;
+	}
+
+	.ciuff-cookie-actions {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+
+	.ciuff-cookie-btn {
+		font-family: 'Space Grotesk', sans-serif;
+		font-weight: 700;
+		font-size: 14px;
+		padding: 11px 20px;
+		border-radius: 100px;
+		border: none;
+		cursor: pointer;
+	}
+
+	.ciuff-cookie-accept {
+		background: #c4e538;
+		color: #0e3b43;
+	}
+
+	.ciuff-cookie-reject {
+		background: transparent;
+		color: #eaf2ef;
+		border: 1px solid rgba(234, 242, 239, 0.3);
+	}
+</style>
+
+<script define:vars={{ GA_MEASUREMENT_ID }}>
+	function ciuffSetCookie(name, value, days) {
+		const d = new Date()
+		d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000)
+		document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`
+	}
+
+	function ciuffGetCookie(name) {
+		const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
+		return match ? match[2] : null
+	}
+
+	function ciuffLoadAnalytics() {
+		if (window.ciuffAnalyticsLoaded) return
+		window.ciuffAnalyticsLoaded = true
+
+		const script = document.createElement('script')
+		script.async = true
+		script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
+		document.head.appendChild(script)
+
+		window.dataLayer = window.dataLayer || []
+		function gtag() {
+			window.dataLayer.push(arguments)
+		}
+		window.gtag = gtag
+		gtag('js', new Date())
+		gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true })
+	}
+
+	function ciuffCookieConsent(accepted) {
+		ciuffSetCookie('ciuff_cookie_consent', accepted ? 'accepted' : 'rejected', 180)
+		document.getElementById('ciuff-cookie-banner')?.classList.remove('show')
+		if (accepted) ciuffLoadAnalytics()
+	}
+
+	document.getElementById('ciuff-cookie-accept')?.addEventListener('click', () => ciuffCookieConsent(true))
+	document.getElementById('ciuff-cookie-reject')?.addEventListener('click', () => ciuffCookieConsent(false))
+
+	const consent = ciuffGetCookie('ciuff_cookie_consent')
+	if (consent === 'accepted') {
+		ciuffLoadAnalytics()
+	} else if (consent === null) {
+		document.getElementById('ciuff-cookie-banner')?.classList.add('show')
+	}
+	// se consent === 'rejected', non facciamo nulla: niente banner, niente Analytics
+</script>
