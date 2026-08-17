@@ -5,8 +5,8 @@ const dropX = 200 - 50 * dropScale
 const dropY = 130 - 50 * dropScale
 ---
 
-<section style="max-width:1200px; margin:0 auto; padding:96px 56px;">
-	<div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+<section style="max-width:1200px; margin:0 auto; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
+	<div class="problem-grid" style="display:grid; gap:56px; align-items:center;">
 		<div>
 			<svg width="100%" height="320" viewBox="0 0 400 320">
 				<circle cx="200" cy="160" r="150" fill="#145C63" opacity="0.08" />
@@ -22,7 +22,7 @@ const dropY = 130 - 50 * dropScale
 			<div style="font-size:13px; font-weight:600; letter-spacing:0.1em; color:#FF6B4A; margin-bottom:16px;">
 				IL PROBLEMA
 			</div>
-			<h2 class="disp" style="font-size:44px; line-height:1.08; margin:0 0 20px; color:#0E3B43;">
+			<h2 class="disp" style="font-size:clamp(1.75rem,5vw,2.75rem); line-height:1.08; margin:0 0 20px; color:#0E3B43;">
 				OGNI TUFFO È UNA ROULETTE PER LA TUA BIRRA
 			</h2>
 			<p style="font-size:17px; line-height:1.7; color:#0E3B43; opacity:0.85; max-width:440px; margin:0;">
@@ -33,3 +33,15 @@ const dropY = 130 - 50 * dropScale
 		</div>
 	</div>
 </section>
+
+<style>
+	.problem-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media (max-width: 760px) {
+		.problem-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

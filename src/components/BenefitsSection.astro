@@ -25,15 +25,15 @@ const benefits = [
 ]
 ---
 
-<section style="background:#145C63; padding:96px 56px;">
+<section style="background:#145C63; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
 	<div style="max-width:1200px; margin:0 auto;">
-		<h2 class="disp" style="font-size:40px; color:#EAF2EF; margin:0 0 56px; text-align:center;">
+		<h2 class="disp" style="font-size:clamp(1.75rem,4.5vw,2.5rem); color:#EAF2EF; margin:0 0 56px; text-align:center;">
 			QUATTRO MOTIVI PER CUI TE NE INNAMORERAI
 		</h2>
-		<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:32px;">
+		<div class="benefits-grid" style="display:grid; gap:32px;">
 			{
 				benefits.map((benefit) => (
-					<div style="background:rgba(234,242,239,0.06); border-radius:4px; padding:36px 28px;">
+					<div style="background:rgba(234,242,239,0.06); border-radius:4px; padding:clamp(24px,5vw,36px) clamp(20px,4vw,28px);">
 						<Drop size={44} dropColor={benefit.color} />
 						<h3 class="disp" style="font-size:24px; color:#EAF2EF; margin:20px 0 12px;">
 							{benefit.title}
@@ -47,3 +47,15 @@ const benefits = [
 		</div>
 	</div>
 </section>
+
+<style>
+	.benefits-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 760px) {
+		.benefits-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

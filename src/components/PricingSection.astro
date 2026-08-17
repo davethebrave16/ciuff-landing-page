@@ -24,19 +24,19 @@ const tiers = [
 ]
 ---
 
-<section style="max-width:1200px; margin:0 auto; padding:96px 56px;">
+<section style="max-width:1200px; margin:0 auto; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
 	<div style="text-align:center; margin-bottom:56px;">
 		<div style="font-size:13px; font-weight:600; letter-spacing:0.1em; color:#FF6B4A; margin-bottom:16px;">
 			CONCEPT IN VALIDAZIONE — PREZZI INDICATIVI
 		</div>
-		<h2 class="disp" style="font-size:44px; margin:0; color:#0E3B43;">SCEGLI IL TUO SET</h2>
+		<h2 class="disp" style="font-size:clamp(1.75rem,5vw,2.75rem); margin:0; color:#0E3B43;">SCEGLI IL TUO SET</h2>
 		<p style="font-size:16px; color:#0E3B43; opacity:0.7; margin:16px auto 0; max-width:480px;">
 			Dicci quale set preferiresti — ci aiuta a capire con cosa partire. Prezzo indicativo di
 			lancio, nessun acquisto richiesto ora.
 		</p>
 	</div>
 
-	<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+	<div class="pricing-grid" style="display:grid; gap:24px;">
 		{
 			tiers.map((tier) => (
 				<button
@@ -59,3 +59,15 @@ const tiers = [
 		}
 	</div>
 </section>
+
+<style>
+	.pricing-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@media (max-width: 760px) {
+		.pricing-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
