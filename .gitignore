@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.firebaserc
+.astro/
+*.local
+.DS_Store
+.firebase
+*.log
