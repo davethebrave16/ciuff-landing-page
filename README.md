@@ -48,6 +48,13 @@ Builds the site and deploys it to Firebase Hosting, after a confirmation prompt.
 
 Pricing tier selection and the email signup form are plain vanilla JS (`src/scripts/interactions.js`) — no framework, no backend. Submitting the email form swaps the form for a confirmation message client-side only; nothing is sent anywhere yet.
 
+## SEO & social sharing
+
+- Production domain: `https://ciuff.it` (set as `site` in `astro.config.mjs`) — used to build the canonical URL and absolute Open Graph/Twitter image URLs.
+- Favicons (`public/favicon.svg`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-*.png`, `site.webmanifest`) were generated from `public/ciuff-icona-trasparente.png` (the source logo mark).
+- `public/og-image.jpg` (1200×630) is the Open Graph / Twitter Card preview image shown when the link is shared — see `BaseLayout.astro` for the meta tags.
+- `@astrojs/sitemap` generates `sitemap-index.xml` at build time; `robots.txt` points to it, for Google indexing.
+
 ## Architecture
 
 See [CLAUDE.md](CLAUDE.md) for the full project layout and tech stack notes.
