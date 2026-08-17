@@ -6,7 +6,10 @@ interface Props {
 	description?: string
 }
 
-const { title, description = 'Ciuff' } = Astro.props
+const {
+	title,
+	description = "L'accessorio anti-spruzzo per la piscina. Concept in validazione — CIUFF.",
+} = Astro.props
 ---
 
 <!doctype html>
@@ -16,10 +19,15 @@ const { title, description = 'Ciuff' } = Astro.props
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body>
-		<main>
-			<slot />
-		</main>
+		<slot />
 	</body>
 </html>

@@ -1,3 +1,12 @@
+/* ─── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+	--petrol: #0e3b43;
+	--teal: #145c63;
+	--lime: #c4e538;
+	--coral: #ff6b4a;
+	--water: #eaf2ef;
+}
+
 /* ─── Reset ─────────────────────────────────────────────────────────────── */
 *,
 *::before,
@@ -13,11 +22,11 @@ html {
 }
 
 body {
-	font-family: system-ui, -apple-system, sans-serif;
+	font-family: 'Space Grotesk', sans-serif;
 	line-height: 1.6;
+	color: var(--petrol);
+	background: var(--water);
 	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
 }
 
 img {
@@ -27,12 +36,57 @@ img {
 }
 
 a {
-	color: inherit;
+	color: var(--teal);
 	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+a:hover {
+	color: var(--petrol);
 }
 
 button {
 	font: inherit;
 	color: inherit;
 	cursor: pointer;
+}
+
+.disp {
+	font-family: 'Bebas Neue', sans-serif;
+	letter-spacing: 0.02em;
+}
+
+/* ─── Pricing tier cards ────────────────────────────────────────────────── */
+.tier-card {
+	text-align: left;
+	cursor: pointer;
+	font-family: 'Space Grotesk', sans-serif;
+	color: var(--petrol);
+	background: #ffffff;
+	border: 2px solid rgba(14, 59, 67, 0.15);
+	border-radius: 4px;
+	padding: 28px 24px;
+	transition: all 0.15s ease;
+}
+
+.tier-card:hover {
+	border-color: var(--petrol);
+}
+
+.tier-card.is-selected {
+	background: var(--lime);
+	border-color: var(--petrol);
+}
+
+/* ─── Email signup ──────────────────────────────────────────────────────── */
+.signup-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+}
+
+.signup-confirmation[hidden],
+.signup-form[hidden] {
+	display: none;
 }

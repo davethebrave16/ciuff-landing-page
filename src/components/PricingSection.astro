@@ -1,0 +1,61 @@
+---
+const tiers = [
+	{
+		id: 'prova',
+		label: 'PROVA',
+		qty: '2 PZ',
+		price: '4,99 €',
+		description: 'Per testarlo al primo weekend in piscina.',
+	},
+	{
+		id: 'gruppo',
+		label: 'GRUPPO',
+		qty: '6 PZ',
+		price: '9,99 €',
+		description: 'Uno per ogni bottiglia, un pomeriggio con gli amici.',
+	},
+	{
+		id: 'festa',
+		label: 'FESTA',
+		qty: '12 PZ',
+		price: '16,99 €',
+		description: "Per quando la festa in piscina è di tutto il gruppo.",
+	},
+]
+---
+
+<section style="max-width:1200px; margin:0 auto; padding:96px 56px;">
+	<div style="text-align:center; margin-bottom:56px;">
+		<div style="font-size:13px; font-weight:600; letter-spacing:0.1em; color:#FF6B4A; margin-bottom:16px;">
+			CONCEPT IN VALIDAZIONE — PREZZI INDICATIVI
+		</div>
+		<h2 class="disp" style="font-size:44px; margin:0; color:#0E3B43;">SCEGLI IL TUO SET</h2>
+		<p style="font-size:16px; color:#0E3B43; opacity:0.7; margin:16px auto 0; max-width:480px;">
+			Dicci quale set preferiresti — ci aiuta a capire con cosa partire. Prezzo indicativo di
+			lancio, nessun acquisto richiesto ora.
+		</p>
+	</div>
+
+	<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+		{
+			tiers.map((tier) => (
+				<button
+					type="button"
+					class="tier-card"
+					class:list={[{ 'is-selected': tier.id === 'gruppo' }]}
+					data-tier={tier.id}
+					aria-pressed={tier.id === 'gruppo' ? 'true' : 'false'}
+				>
+					<div style="font-size:13px; font-weight:600; letter-spacing:0.08em; opacity:0.65;">
+						{tier.label}
+					</div>
+					<div class="disp" style="font-size:36px; margin:10px 0 4px;">
+						{tier.qty}
+					</div>
+					<div style="font-size:28px; font-weight:700; margin-bottom:18px;">{tier.price}</div>
+					<div style="font-size:14px; opacity:0.7; line-height:1.5;">{tier.description}</div>
+				</button>
+			))
+		}
+	</div>
+</section>

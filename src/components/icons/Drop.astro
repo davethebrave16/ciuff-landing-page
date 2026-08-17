@@ -1,0 +1,24 @@
+---
+interface Props {
+	size: number
+	dropColor: string
+	splashColor?: string
+	class?: string
+}
+
+const { size, dropColor, splashColor, class: className } = Astro.props
+---
+
+<svg
+	width={size}
+	height={size}
+	viewBox="0 0 100 100"
+	style="flex-shrink:0"
+	class={className}
+>
+	<path
+		d="M50,18 C64,36 76,52 76,66 A26,26 0 1,1 24,66 C24,52 36,36 50,18 Z"
+		fill={dropColor}
+	/>
+	{splashColor && <circle cx="78" cy="26" r="9" fill={splashColor} />}
+</svg>

@@ -1,0 +1,49 @@
+---
+import Drop from '@/components/icons/Drop.astro'
+
+const benefits = [
+	{
+		color: '#C4E538',
+		title: 'SEMPRE APERTO, MAI DA RICORDARE',
+		body: "Non c'è un tappo da aprire o richiudere dopo ogni sorso. Bevi quando vuoi, appoggi la bottiglia, torni in acqua — nessun passaggio in più da ricordare.",
+	},
+	{
+		color: '#FF6B4A',
+		title: 'PENSATO PER TENERE FUORI GLI SPRUZZI',
+		body: "Ci bevi in ogni momento, mentre quello che c'è fuori — schizzi, tuffi, spruzzi — è pensato per restare fuori.",
+	},
+	{
+		color: '#EAF2EF',
+		title: 'IN MANO O SUL BORDO, COME VUOI',
+		body: 'La porti a nuoto tenendola in mano, oppure la lasci sul bordo e ti tuffi senza pensarci. Funziona uguale in entrambi i casi.',
+	},
+	{
+		color: '#145C63',
+		title: 'SI AGGANCIA E VIA',
+		body: 'Una mano, un secondo, fatto. Va bene con qualsiasi bottiglia di birra standard, senza istruzioni da leggere.',
+	},
+]
+---
+
+<section style="background:#145C63; padding:96px 56px;">
+	<div style="max-width:1200px; margin:0 auto;">
+		<h2 class="disp" style="font-size:40px; color:#EAF2EF; margin:0 0 56px; text-align:center;">
+			QUATTRO MOTIVI PER CUI TE NE INNAMORERAI
+		</h2>
+		<div style="display:grid; grid-template-columns:repeat(2,1fr); gap:32px;">
+			{
+				benefits.map((benefit) => (
+					<div style="background:rgba(234,242,239,0.06); border-radius:4px; padding:36px 28px;">
+						<Drop size={44} dropColor={benefit.color} />
+						<h3 class="disp" style="font-size:24px; color:#EAF2EF; margin:20px 0 12px;">
+							{benefit.title}
+						</h3>
+						<p style="font-size:15px; line-height:1.6; color:#EAF2EF; opacity:0.8; margin:0;">
+							{benefit.body}
+						</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,6 +1,6 @@
 # Ciuff — Landing Page
 
-Static landing page for Ciuff, built with [Astro](https://astro.build) and deployed to Firebase Hosting.
+One-page market-validation landing site for **CIUFF**, a summer accessories brand for bottles (a splash-proof pool cap). Built with [Astro](https://astro.build) and deployed to Firebase Hosting. The page collects interest emails and lets visitors pick a preferred pricing tier before the physical product exists.
 
 ## Prerequisites
 
@@ -35,8 +35,19 @@ Builds the site and deploys it to Firebase Hosting, after a confirmation prompt.
 
 ## Routes
 
-- `/` — homepage (placeholder for now)
+- `/` — homepage: header, hero, problem, benefits, pricing, email signup, footer (see [CLAUDE.md](CLAUDE.md) for the component breakdown)
+
+## Design
+
+- Colors: `#0E3B43` petrol, `#145C63` teal, `#C4E538` lime, `#FF6B4A` coral, `#EAF2EF` water-white — defined as CSS custom properties in `src/styles/global.css`
+- Type: **Bebas Neue** for display/headings (`.disp` class), **Space Grotesk** for body text, both loaded via Google Fonts in `src/layouts/BaseLayout.astro`
+- No photography — all graphics are inline SVG built from a single droplet path + circles (`src/components/icons/Drop.astro`)
+- Copy is in Italian and is final/verbatim — do not translate or rewrite it
+
+## Interactivity
+
+Pricing tier selection and the email signup form are plain vanilla JS (`src/scripts/interactions.js`) — no framework, no backend. Submitting the email form swaps the form for a confirmation message client-side only; nothing is sent anywhere yet.
 
 ## Architecture
 
-This is an intentionally minimal scaffold: a single placeholder homepage, no design system, no CMS, no i18n. The real page structure and content will be added in a follow-up once the design/content is ready. See [CLAUDE.md](CLAUDE.md) for the current project layout.
+See [CLAUDE.md](CLAUDE.md) for the full project layout and tech stack notes.
