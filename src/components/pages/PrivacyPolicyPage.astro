@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import SiteHeader from '@/components/SiteHeader.astro'
 import SiteFooter from '@/components/SiteFooter.astro'
+import ObfuscatedEmail from '@/components/ObfuscatedEmail.astro'
 import { useTranslations } from '@/i18n/utils'
 
 interface Props {
@@ -23,7 +24,7 @@ const l = t.legal.privacy
 		<h2>{l.controllerHeading}</h2>
 		<p>
 			{l.controllerName}<br />
-			{l.controllerEmailLabel} {l.controllerEmail}
+			{l.controllerEmailLabel} <ObfuscatedEmail email={l.controllerEmail} />
 		</p>
 
 		<h2>{l.whatIsHeading}</h2>
@@ -72,7 +73,7 @@ const l = t.legal.privacy
 		<ul>
 			{l.rightsItems.map((item) => <li>{item}</li>)}
 		</ul>
-		<p>{l.rightsContactPrefix} {l.controllerEmail}</p>
+		<p>{l.rightsContactPrefix} <ObfuscatedEmail email={l.controllerEmail} /></p>
 		<p>
 			{l.rightsComplaintPrefix}
 			(<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer"

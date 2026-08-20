@@ -113,7 +113,7 @@ export const it = {
 			controllerHeading: 'Titolare del trattamento',
 			controllerName: 'Ciuff Team',
 			controllerEmailLabel: 'Email di contatto:',
-			controllerEmail: 'privacy@ciuff.it',
+			controllerEmail: 'getciuff@outlook.it',
 			whatIsHeading: "Cos'è questo sito",
 			whatIsBody:
 				'CIUFF (il "Sito") è una pagina informativa relativa a un concept di prodotto in fase di validazione. Il Sito non vende prodotti né elabora pagamenti: raccoglie esclusivamente manifestazioni di interesse tramite un modulo di iscrizione.',

@@ -1,0 +1,22 @@
+---
+// Renders an email address without putting the literal "user@domain" string in the static
+// HTML, so simple regex-based scrapers reading the page source don't pick it up. The real
+// address is reconstructed and injected client-side. Doesn't stop scrapers that execute JS.
+interface Props {
+	email: string
+}
+
+const { email } = Astro.props
+const reversed = email.split('').reverse().join('')
+---
+
+<a href="#" class="ciuff-email" data-email={reversed} rel="nofollow">(enable JavaScript to see email)</a>
+
+<script>
+	document.querySelectorAll('a.ciuff-email[data-email]').forEach((el) => {
+		const email = (el.getAttribute('data-email') ?? '').split('').reverse().join('')
+		el.textContent = email
+		el.setAttribute('href', `mailto:${email}`)
+		el.removeAttribute('data-email')
+	})
+</script>

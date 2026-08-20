@@ -113,7 +113,7 @@ export const en = {
 			controllerHeading: 'Data controller',
 			controllerName: 'Ciuff Team',
 			controllerEmailLabel: 'Contact email:',
-			controllerEmail: 'privacy@ciuff.it',
+			controllerEmail: 'getciuff@outlook.it',
 			whatIsHeading: 'What this site is',
 			whatIsBody:
 				'CIUFF (the "Site") is an informational page about a product concept currently in validation. The Site does not sell products or process payments: it only collects expressions of interest through a sign-up form.',
