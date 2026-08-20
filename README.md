@@ -1,11 +1,10 @@
 # Ciuff — Landing Page
 
-One-page market-validation landing site for **CIUFF**, a summer accessories brand for bottles (a splash-proof pool cap). Built with [Astro](https://astro.build) and deployed to Firebase Hosting. The page collects interest emails and lets visitors pick a preferred pricing tier before the physical product exists.
+One-page market-validation landing site for **CIUFF**, a summer accessories brand for bottles (a splash-proof pool cap). Built with [Astro](https://astro.build) and deployed to Netlify. The page collects interest emails and lets visitors pick a preferred pricing tier before the physical product exists.
 
 ## Prerequisites
 
 - Node.js 20+
-- [Firebase CLI](https://firebase.google.com/docs/cli) (`npm install -g firebase-tools`), logged in with `firebase login`
 
 ## Setup
 
@@ -13,7 +12,7 @@ One-page market-validation landing site for **CIUFF**, a summer accessories bran
 ./setup.sh
 ```
 
-This installs dependencies and creates `.firebaserc` from `.firebaserc.example`. Update `.firebaserc` with your real Firebase project ID before deploying.
+Installs dependencies.
 
 ## Development
 
@@ -25,13 +24,7 @@ Starts the Astro dev server (`npm run dev` under the hood).
 
 ## Deploy
 
-### Manual
-
-```sh
-./deploy.sh
-```
-
-Builds the site and deploys it to Firebase Hosting, after a confirmation prompt. There is no automated CI/CD deploy for this project — every deploy is manual.
+Deploys are handled by Netlify, connected to this repo (`netlify.toml` sets the build command and publish directory).
 
 ## Routes
 

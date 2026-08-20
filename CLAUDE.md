@@ -5,19 +5,18 @@
 - `npm run dev` — start the Astro dev server
 - `npm run build` — build the static site to `dist/`
 - `npm run preview` — preview the production build locally
-- `./setup.sh` — install deps, bootstrap `.firebaserc`
+- `./setup.sh` — install deps
 - `./rundev.sh` — bootstrap check + `npm run dev`
-- `./deploy.sh` — build + manual deploy to Firebase Hosting
 
 ## CI/CD
 
-None. Deploys are manual only, via `./deploy.sh`.
+None in this repo. Deploys are handled by Netlify (connected to the repo, config in `netlify.toml`) on push.
 
 ## Tech Stack
 
 - [Astro](https://astro.build) (static output, `@astrojs/sitemap` is the only integration)
 - Vanilla JS for interactivity (`src/scripts/interactions.js`) — **not** React. This is a deliberate choice: the page's interactive state (a 3-way pricing selector, a form-to-confirmation swap) doesn't need a framework, so don't introduce one for it.
-- Firebase Hosting (deploy only — no Firebase SDK is used in the app)
+- Netlify (deploy only — no Netlify SDK/functions are used in the app)
 
 No CMS/Firestore content fetching. The site does have i18n now (see below) — its shape borrows from valecreative-site's pattern (Astro's built-in `i18n` routing + `src/i18n/*` dictionaries + a locale gateway), scaled down for a single-page site. Don't otherwise assume other patterns from valecreative-site (React, content collections, Firestore) apply here.
 
