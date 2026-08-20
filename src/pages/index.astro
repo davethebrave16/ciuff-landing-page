@@ -1,27 +1,5 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro'
-import SiteHeader from '@/components/SiteHeader.astro'
-import Hero from '@/components/Hero.astro'
-import ProblemSection from '@/components/ProblemSection.astro'
-import BenefitsSection from '@/components/BenefitsSection.astro'
-import PricingSection from '@/components/PricingSection.astro'
-import EmailSignup from '@/components/EmailSignup.astro'
-import SiteFooter from '@/components/SiteFooter.astro'
-import CookieBanner from '@/components/CookieBanner.astro'
+import LocaleGateway from '@/components/LocaleGateway.astro'
 ---
 
-<BaseLayout title="CIUFF — L'accessorio anti-spruzzo per la piscina">
-	<SiteHeader />
-	<Hero />
-	<ProblemSection />
-	<BenefitsSection />
-	<PricingSection />
-	<EmailSignup />
-	<SiteFooter />
-
-	<script>
-		import '@/scripts/interactions.js'
-	</script>
-
-	<CookieBanner />
-</BaseLayout>
+<LocaleGateway />

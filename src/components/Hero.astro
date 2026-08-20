@@ -1,4 +1,13 @@
 ---
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+
 const DROP_PATH = 'M50,18 C64,36 76,52 76,66 A26,26 0 1,1 24,66 C24,52 36,36 50,18 Z'
 
 const ripples = [
@@ -24,21 +33,19 @@ const drops = [
 			<div
 				style="display:inline-block; font-size:13px; font-weight:600; letter-spacing:0.1em; color:#C4E538; background:rgba(196,229,56,0.12); border-radius:2px; padding:6px 14px; margin-bottom:28px;"
 			>
-				CONCEPT IN VALIDAZIONE — NON ANCORA IN VENDITA
+				{t.hero.badge}
 			</div>
 			<h1 class="disp" style="font-size:clamp(2.5rem,8vw,4.75rem); line-height:1.02; color:#EAF2EF; margin:0 0 28px;">
-				LA BIRRA RESTA BIRRA.<br /><span style="color:#C4E538;">L'ACQUA RESTA ACQUA.</span>
+				{t.hero.titleLine1}<br /><span style="color:#C4E538;">{t.hero.titleLine2}</span>
 			</h1>
 			<p style="font-size:19px; line-height:1.6; color:#EAF2EF; opacity:0.85; max-width:460px; margin:0 0 36px;">
-				L'accessorio anti-spruzzo per la piscina, in fase di validazione. Niente tappi da aprire
-				o chiudere: pensato per restare sempre pronto e tenere fuori gli spruzzi mentre bevi
-				quando vuoi.
+				{t.hero.body}
 			</p>
 			<a
 				href="#iscriviti"
 				style="display:inline-block; text-decoration:none; background:#C4E538; color:#0E3B43; font-weight:700; font-size:16px; border-radius:2px; padding:16px 32px;"
 			>
-				Voglio saperne di più
+				{t.hero.cta}
 			</a>
 		</div>
 		<div style="position:relative; height:clamp(200px,45vw,360px);">

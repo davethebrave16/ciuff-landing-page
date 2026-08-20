@@ -1,32 +1,43 @@
 ---
 import '../styles/global.css'
+import { useTranslations } from '@/i18n/utils'
 
 interface Props {
+	locale: string
 	title: string
 	description?: string
 	ogImage?: string
 }
 
-const {
-	title,
-	description = "L'accessorio anti-spruzzo per la piscina. Concept in validazione — CIUFF.",
-	ogImage = '/og-image.jpg',
-} = Astro.props
+const { locale, title, description, ogImage = '/og-image.jpg' } = Astro.props
+
+const t = useTranslations(locale)
+const resolvedDescription = description ?? t.meta.description
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 const resolvedOgImage = new URL(ogImage, Astro.site)
+
+const otherLocale = locale === 'it' ? 'en' : 'it'
+const itUrl = new URL(Astro.url.pathname.replace(/^\/(it|en)/, '/it'), Astro.site)
+const enUrl = new URL(Astro.url.pathname.replace(/^\/(it|en)/, '/en'), Astro.site)
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="description" content={description} />
+		<meta name="description" content={resolvedDescription} />
 		<meta name="theme-color" content="#0E3B43" />
 		<title>{title}</title>
 
 		<link rel="canonical" href={canonicalUrl} />
+
+		<!-- Hreflang alternates. x-default points at the root language gateway (src/pages/index.astro),
+		     which picks /it or /en for the visitor rather than assuming Italian. -->
+		<link rel="alternate" hreflang="it" href={itUrl} />
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
 		<!-- Favicons -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -41,16 +52,16 @@ const resolvedOgImage = new URL(ogImage, Astro.site)
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
+		<meta property="og:description" content={resolvedDescription} />
 		<meta property="og:image" content={resolvedOgImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:locale" content="it_IT" />
+		<meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_US'} />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
+		<meta name="twitter:description" content={resolvedDescription} />
 		<meta name="twitter:image" content={resolvedOgImage} />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />

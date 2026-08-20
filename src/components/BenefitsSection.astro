@@ -1,34 +1,20 @@
 ---
 import Drop from '@/components/icons/Drop.astro'
+import { useTranslations } from '@/i18n/utils'
 
-const benefits = [
-	{
-		color: '#C4E538',
-		title: 'SEMPRE APERTO, MAI DA RICORDARE',
-		body: "Non c'è un tappo da aprire o richiudere dopo ogni sorso. Bevi quando vuoi, appoggi la bottiglia, torni in acqua — nessun passaggio in più da ricordare.",
-	},
-	{
-		color: '#FF6B4A',
-		title: 'PENSATO PER TENERE FUORI GLI SPRUZZI',
-		body: "Ci bevi in ogni momento, mentre quello che c'è fuori — schizzi, tuffi, spruzzi — è pensato per restare fuori.",
-	},
-	{
-		color: '#EAF2EF',
-		title: 'IN MANO O SUL BORDO, COME VUOI',
-		body: 'La porti a nuoto tenendola in mano, oppure la lasci sul bordo e ti tuffi senza pensarci. Funziona uguale in entrambi i casi.',
-	},
-	{
-		color: '#145C63',
-		title: 'SI AGGANCIA E VIA',
-		body: 'Una mano, un secondo, fatto. Va bene con qualsiasi bottiglia di birra standard, senza istruzioni da leggere.',
-	},
-]
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+const benefits = t.benefits.items
 ---
 
 <section style="background:#145C63; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
 	<div style="max-width:1200px; margin:0 auto;">
 		<h2 class="disp" style="font-size:clamp(1.75rem,4.5vw,2.5rem); color:#EAF2EF; margin:0 0 56px; text-align:center;">
-			QUATTRO MOTIVI PER CUI TE NE INNAMORERAI
+			{t.benefits.title}
 		</h2>
 		<div class="benefits-grid" style="display:grid; gap:32px;">
 			{

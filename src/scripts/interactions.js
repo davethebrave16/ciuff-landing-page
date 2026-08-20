@@ -1,9 +1,3 @@
-const TIER_LABELS = {
-	prova: 'Prova — 2 pz, 4,99 €',
-	gruppo: 'Gruppo — 6 pz, 9,99 €',
-	festa: 'Festa — 12 pz, 16,99 €',
-}
-
 let selectedTier = 'gruppo'
 
 const tierButtons = document.querySelectorAll('[data-tier]')
@@ -11,7 +5,9 @@ const selectedTierLabel = document.getElementById('selected-tier-label')
 const confirmationTierLabel = document.getElementById('confirmation-tier-label')
 
 function updateTierLabels() {
-	const label = TIER_LABELS[selectedTier]
+	const button = document.querySelector(`[data-tier="${selectedTier}"]`)
+	const label = button?.dataset.label
+	if (!label) return
 	if (selectedTierLabel) selectedTierLabel.textContent = label
 	if (confirmationTierLabel) confirmationTierLabel.textContent = label
 }

@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+const l = t.legal.cookie
+---
+
+<BaseLayout locale={locale} title={t.meta.cookieTitle} description={t.meta.cookieDescription}>
+	<SiteHeader locale={locale} />
+
+	<article class="legal-content">
+		<h1>{l.title}</h1>
+		<p class="legal-updated">{l.updated}</p>
+
+		<h2>{l.whatAreHeading}</h2>
+		<p>{l.whatAreBody}</p>
+
+		<h2>{l.usedHeading}</h2>
+
+		<h3>{l.technicalHeading}</h3>
+		<div class="legal-table-wrap">
+			<table>
+				<thead>
+					<tr>
+						{l.technicalTable.headers.map((header) => <th>{header}</th>)}
+					</tr>
+				</thead>
+				<tbody>
+					{
+						l.technicalTable.rows.map((row) => (
+							<tr>
+								<td>
+									<code>{row.name}</code>
+								</td>
+								<td>{row.purpose}</td>
+								<td>{row.duration}</td>
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+		</div>
+		<p>{l.technicalNote}</p>
+
+		<h3>{l.analyticsHeading}</h3>
+		<div class="legal-table-wrap">
+			<table>
+				<thead>
+					<tr>
+						{l.analyticsTable.headers.map((header) => <th>{header}</th>)}
+					</tr>
+				</thead>
+				<tbody>
+					{
+						l.analyticsTable.rows.map((row) => (
+							<tr>
+								<td>
+									<code>{row.name}</code>
+								</td>
+								<td>{row.provider}</td>
+								<td>{row.purpose}</td>
+								<td>{row.duration}</td>
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+		</div>
+		<p>
+			{l.analyticsNotePrefix} <strong>{l.analyticsNoteStrong}</strong> {l.analyticsNoteSuffix}
+		</p>
+
+		<h2>{l.manageHeading}</h2>
+		<p>{l.manageIntro}</p>
+		<ul>
+			{l.manageItems.map((item) => <li>{item}</li>)}
+		</ul>
+
+		<h2>{l.thirdPartyHeading}</h2>
+		<p>
+			{l.thirdPartyBodyPrefix}
+			<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+				>policies.google.com/privacy</a
+			>
+			{l.thirdPartyBodyMiddle}
+			<a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer"
+				>adssettings.google.com</a
+			>.
+		</p>
+	</article>
+
+	<SiteFooter locale={locale} />
+</BaseLayout>

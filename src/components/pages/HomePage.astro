@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SiteHeader from '@/components/SiteHeader.astro'
+import Hero from '@/components/Hero.astro'
+import ProblemSection from '@/components/ProblemSection.astro'
+import BenefitsSection from '@/components/BenefitsSection.astro'
+import PricingSection from '@/components/PricingSection.astro'
+import EmailSignup from '@/components/EmailSignup.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+import CookieBanner from '@/components/CookieBanner.astro'
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+---
+
+<BaseLayout locale={locale} title={t.meta.title} description={t.meta.description}>
+	<SiteHeader locale={locale} />
+	<Hero locale={locale} />
+	<ProblemSection locale={locale} />
+	<BenefitsSection locale={locale} />
+	<PricingSection locale={locale} />
+	<EmailSignup locale={locale} />
+	<SiteFooter locale={locale} />
+
+	<script>
+		import '@/scripts/interactions.js'
+	</script>
+
+	<CookieBanner locale={locale} />
+</BaseLayout>

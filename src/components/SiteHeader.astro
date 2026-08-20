@@ -1,18 +1,65 @@
 ---
 import Drop from '@/components/icons/Drop.astro'
+import { useTranslations, getLocalePath } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+
+const otherLocale = locale === 'it' ? 'en' : 'it'
+const switchPath = Astro.url.pathname.replace(/^\/(it|en)/, `/${otherLocale}`)
 ---
 
 <header
-	style="display:flex; align-items:center; justify-content:space-between; padding:clamp(18px,4vw,28px) clamp(20px,6vw,56px); max-width:1200px; margin:0 auto;"
+	style="display:flex; align-items:center; justify-content:space-between; padding:clamp(18px,4vw,28px) clamp(20px,6vw,56px); max-width:1200px; margin:0 auto; gap:16px;"
 >
-	<div style="display:flex; align-items:center; gap:12px;">
+	<a href={getLocalePath(locale, '/')} style="display:flex; align-items:center; gap:12px; text-decoration:none;">
 		<Drop size={34} dropColor="#0E3B43" splashColor="#C4E538" />
 		<span class="disp" style="font-size:clamp(22px,4vw,30px); color:#0E3B43; line-height:1;">CIUFF</span>
-	</div>
-	<a
-		href="#iscriviti"
-		style="text-decoration:none; font-size:15px; font-weight:600; color:#0E3B43; border:2px solid #0E3B43; border-radius:2px; padding:10px 22px;"
-	>
-		Iscriviti
 	</a>
+	<div style="display:flex; align-items:center; gap:18px;">
+		<div class="ciuff-langswitch" aria-label={t.langSwitcher.label} style="display:flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:#0E3B43;">
+			<a
+				href={locale === 'it' ? Astro.url.pathname : switchPath}
+				class="ciuff-langswitch-link"
+				data-locale="it"
+				aria-current={locale === 'it' ? 'true' : undefined}
+				style={`text-decoration:none; opacity:${locale === 'it' ? '1' : '0.5'}; color:#0E3B43;`}
+			>
+				IT
+			</a>
+			<span aria-hidden="true" style="opacity:0.4;">/</span>
+			<a
+				href={locale === 'en' ? Astro.url.pathname : switchPath}
+				class="ciuff-langswitch-link"
+				data-locale="en"
+				aria-current={locale === 'en' ? 'true' : undefined}
+				style={`text-decoration:none; opacity:${locale === 'en' ? '1' : '0.5'}; color:#0E3B43;`}
+			>
+				EN
+			</a>
+		</div>
+		<a
+			href={`${getLocalePath(locale, '/')}#iscriviti`}
+			style="text-decoration:none; font-size:15px; font-weight:600; color:#0E3B43; border:2px solid #0E3B43; border-radius:2px; padding:10px 22px;"
+		>
+			{t.header.cta}
+		</a>
+	</div>
 </header>
+
+<script>
+	document.querySelectorAll('.ciuff-langswitch-link').forEach((link) => {
+		link.addEventListener('click', () => {
+			const targetLocale = link.getAttribute('data-locale')
+			if (targetLocale) {
+				try {
+					localStorage.setItem('ciuff-locale', targetLocale)
+				} catch (e) {}
+			}
+		})
+	})
+</script>

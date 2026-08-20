@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+const l = t.legal.privacy
+---
+
+<BaseLayout locale={locale} title={t.meta.privacyTitle} description={t.meta.privacyDescription}>
+	<SiteHeader locale={locale} />
+
+	<article class="legal-content">
+		<h1>{l.title}</h1>
+		<p class="legal-updated">{l.updated}</p>
+
+		<h2>{l.controllerHeading}</h2>
+		<p>
+			{l.controllerName}<br />
+			{l.controllerEmailLabel} {l.controllerEmail}
+		</p>
+
+		<h2>{l.whatIsHeading}</h2>
+		<p>{l.whatIsBody}</p>
+
+		<h2>{l.dataHeading}</h2>
+
+		<h3>{l.data1Heading}</h3>
+		<p>
+			{l.data1BodyPrefix} <strong>{l.data1BodyEmail}</strong> {l.data1BodyMiddle}
+			<strong>{l.data1BodyTier}</strong>{l.data1BodySuffix}
+			(<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
+				>policies.google.com/privacy</a
+			>).
+		</p>
+
+		<h3>{l.data2Heading}</h3>
+		<p>{l.data2Body1}</p>
+		<p>
+			{l.data2Body2Prefix} <strong>{l.data2Body2Strong}</strong> {l.data2Body2Suffix}
+		</p>
+
+		<h2>{l.purposeHeading}</h2>
+		<ul>
+			{l.purposeItems.map((item) => <li>{item}</li>)}
+		</ul>
+
+		<h2>{l.legalBasisHeading}</h2>
+		<ul>
+			{
+				l.legalBasisItems.map((item) => (
+					<li>
+						{item.prefix} <strong>{item.strong}</strong> {item.suffix}
+					</li>
+				))
+			}
+		</ul>
+
+		<h2>{l.retentionHeading}</h2>
+		<ul>
+			{l.retentionItems.map((item) => <li>{item}</li>)}
+		</ul>
+
+		<h2>{l.rightsHeading}</h2>
+		<p>{l.rightsIntro}</p>
+		<ul>
+			{l.rightsItems.map((item) => <li>{item}</li>)}
+		</ul>
+		<p>{l.rightsContactPrefix} {l.controllerEmail}</p>
+		<p>
+			{l.rightsComplaintPrefix}
+			(<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer"
+				>www.garanteprivacy.it</a
+			>).
+		</p>
+
+		<h2>{l.recipientsHeading}</h2>
+		<p>{l.recipientsIntro}</p>
+		<ul>
+			{l.recipientsItems.map((item) => <li>{item}</li>)}
+		</ul>
+
+		<h2>{l.changesHeading}</h2>
+		<p>{l.changesBody}</p>
+	</article>
+
+	<SiteFooter locale={locale} />
+</BaseLayout>

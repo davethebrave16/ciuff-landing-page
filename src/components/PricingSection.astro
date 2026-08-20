@@ -1,38 +1,23 @@
 ---
-const tiers = [
-	{
-		id: 'prova',
-		label: 'PROVA',
-		qty: '2 PZ',
-		price: '4,99 €',
-		description: 'Per testarlo al primo weekend in piscina.',
-	},
-	{
-		id: 'gruppo',
-		label: 'GRUPPO',
-		qty: '6 PZ',
-		price: '9,99 €',
-		description: 'Uno per ogni bottiglia, un pomeriggio con gli amici.',
-	},
-	{
-		id: 'festa',
-		label: 'FESTA',
-		qty: '12 PZ',
-		price: '16,99 €',
-		description: "Per quando la festa in piscina è di tutto il gruppo.",
-	},
-]
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+const tiers = t.pricing.tiers
 ---
 
 <section style="max-width:1200px; margin:0 auto; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
 	<div style="text-align:center; margin-bottom:56px;">
 		<div style="font-size:13px; font-weight:600; letter-spacing:0.1em; color:#FF6B4A; margin-bottom:16px;">
-			CONCEPT IN VALIDAZIONE — PREZZI INDICATIVI
+			{t.pricing.badge}
 		</div>
-		<h2 class="disp" style="font-size:clamp(1.75rem,5vw,2.75rem); margin:0; color:#0E3B43;">SCEGLI IL TUO SET</h2>
+		<h2 class="disp" style="font-size:clamp(1.75rem,5vw,2.75rem); margin:0; color:#0E3B43;">{t.pricing.title}</h2>
 		<p style="font-size:16px; color:#0E3B43; opacity:0.7; margin:16px auto 0; max-width:480px;">
-			Dicci quale set preferiresti — ci aiuta a capire con cosa partire. Prezzo indicativo di
-			lancio, nessun acquisto richiesto ora.
+			{t.pricing.intro}
 		</p>
 	</div>
 
@@ -44,6 +29,7 @@ const tiers = [
 					class="tier-card"
 					class:list={[{ 'is-selected': tier.id === 'gruppo' }]}
 					data-tier={tier.id}
+					data-label={tier.signupLabel}
 					aria-pressed={tier.id === 'gruppo' ? 'true' : 'false'}
 				>
 					<div style="font-size:13px; font-weight:600; letter-spacing:0.08em; opacity:0.65;">

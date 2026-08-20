@@ -1,4 +1,13 @@
 ---
+import { useTranslations } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+
 const DROP_PATH = 'M50,18 C64,36 76,52 76,66 A26,26 0 1,1 24,66 C24,52 36,36 50,18 Z'
 const dropScale = 90 / 100
 const dropX = 200 - 50 * dropScale
@@ -20,15 +29,13 @@ const dropY = 130 - 50 * dropScale
 		</div>
 		<div>
 			<div style="font-size:13px; font-weight:600; letter-spacing:0.1em; color:#FF6B4A; margin-bottom:16px;">
-				IL PROBLEMA
+				{t.problem.eyebrow}
 			</div>
 			<h2 class="disp" style="font-size:clamp(1.75rem,5vw,2.75rem); line-height:1.08; margin:0 0 20px; color:#0E3B43;">
-				OGNI TUFFO È UNA ROULETTE PER LA TUA BIRRA
+				{t.problem.title}
 			</h2>
 			<p style="font-size:17px; line-height:1.7; color:#0E3B43; opacity:0.85; max-width:440px; margin:0;">
-				Basta un salto in piscina vicino, un tuffo di un amico, un colpo di vento sull'acqua — e
-				la bottiglia lasciata sul bordo si ritrova mezza acqua e mezza schiuma. Ogni volta la
-				stessa storia.
+				{t.problem.body}
 			</p>
 		</div>
 	</div>

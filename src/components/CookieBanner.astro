@@ -1,19 +1,27 @@
 ---
+import { useTranslations, getLocalePath } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+
 const GA_MEASUREMENT_ID = 'G-VF5LV1J8DF'
 ---
 
 <div id="ciuff-cookie-banner">
 	<p>
-		Usiamo cookie tecnici necessari al funzionamento del sito e, solo con il tuo consenso, cookie
-		di analisi statistica (Google Analytics) per capire come viene usata questa pagina. Leggi la
-		<a href="/privacy-policy">Privacy Policy</a> e la <a href="/cookie-policy">Cookie Policy</a>.
+		{t.cookieBanner.textPrefix}
+		<a href={getLocalePath(locale, '/privacy-policy')}>{t.cookieBanner.privacyLink}</a> {t.cookieBanner.andText} <a href={getLocalePath(locale, '/cookie-policy')}>{t.cookieBanner.cookieLink}</a>.
 	</p>
 	<div class="ciuff-cookie-actions">
 		<button type="button" class="ciuff-cookie-btn ciuff-cookie-accept" id="ciuff-cookie-accept">
-			Accetta
+			{t.cookieBanner.accept}
 		</button>
 		<button type="button" class="ciuff-cookie-btn ciuff-cookie-reject" id="ciuff-cookie-reject">
-			Rifiuta
+			{t.cookieBanner.reject}
 		</button>
 	</div>
 </div>

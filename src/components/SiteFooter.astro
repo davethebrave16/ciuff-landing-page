@@ -1,9 +1,20 @@
+---
+import { useTranslations, getLocalePath } from '@/i18n/utils'
+
+interface Props {
+	locale: string
+}
+
+const { locale } = Astro.props
+const t = useTranslations(locale)
+---
+
 <footer
 	style="padding:32px clamp(20px,6vw,56px); text-align:center; font-size:13px; color:#0E3B43; opacity:0.5; display:flex; flex-direction:column; gap:8px; align-items:center;"
 >
-	<span>CIUFF — accessori estivi per bottiglie</span>
+	<span>{t.footer.tagline}</span>
 	<div style="display:flex; gap:16px;">
-		<a href="/privacy-policy" style="color:#0E3B43; opacity:0.8;">Privacy Policy</a>
-		<a href="/cookie-policy" style="color:#0E3B43; opacity:0.8;">Cookie Policy</a>
+		<a href={getLocalePath(locale, '/privacy-policy')} style="color:#0E3B43; opacity:0.8;">{t.footer.privacy}</a>
+		<a href={getLocalePath(locale, '/cookie-policy')} style="color:#0E3B43; opacity:0.8;">{t.footer.cookie}</a>
 	</div>
 </footer>

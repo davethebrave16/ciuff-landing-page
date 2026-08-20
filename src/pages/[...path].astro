@@ -1,0 +1,13 @@
+---
+import LocaleGateway from '@/components/LocaleGateway.astro'
+
+export function getStaticPaths() {
+	// Legacy unprefixed paths that existed before locale routing was introduced.
+	const paths = ['privacy-policy', 'cookie-policy']
+	return paths.map((path) => ({ params: { path } }))
+}
+
+const { path } = Astro.params
+---
+
+<LocaleGateway path={path} />
