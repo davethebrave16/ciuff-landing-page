@@ -27,10 +27,9 @@ const tiers = t.pricing.tiers
 				<button
 					type="button"
 					class="tier-card"
-					class:list={[{ 'is-selected': tier.id === 'gruppo' }]}
 					data-tier={tier.id}
 					data-label={tier.signupLabel}
-					aria-pressed={tier.id === 'gruppo' ? 'true' : 'false'}
+					aria-pressed="false"
 				>
 					<div style="font-size:13px; font-weight:600; letter-spacing:0.08em; opacity:0.65;">
 						{tier.label}

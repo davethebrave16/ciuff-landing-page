@@ -34,7 +34,7 @@ src/
     Hero.astro               — dark hero section + ripple/droplet decorative SVG
     ProblemSection.astro    — "problem" section + decorative SVG
     BenefitsSection.astro   — 4-card benefits grid
-    PricingSection.astro    — 3 pricing tier buttons (data-tier="prova|gruppo|festa"), each carrying a data-label with its translated signup label
+    PricingSection.astro    — 3 pricing tier buttons (data-tier="prova|gruppo|festa"), each carrying a data-label with its translated signup label; none is pre-selected on load
     EmailSignup.astro       — signup form + confirmation card, section id="iscriviti"
     SiteFooter.astro         — links to localized /privacy-policy and /cookie-policy
     CookieBanner.astro      — consent banner, gates Google Analytics loading (see below)
@@ -44,7 +44,7 @@ src/
     icons/
       Drop.astro             — reusable droplet SVG (props: size, dropColor, splashColor?)
   scripts/
-    interactions.js         — vanilla JS: pricing tier selection (reads labels from each button's data-label), email form submit/confirmation swap
+    interactions.js         — vanilla JS: pricing tier selection (reads labels from each button's data-label), consent-gated submit button, email form submission to Google Forms + confirmation swap
   pages/
     index.astro              — root gateway, renders <LocaleGateway />
     [...path].astro          — catch-all gateway for legacy unprefixed paths (privacy-policy, cookie-policy), also via <LocaleGateway path={...} />
@@ -77,11 +77,14 @@ Italian copy (`src/i18n/it.ts`) is final/verbatim (sourced from the original des
 
 ## Interactivity model
 
-`src/scripts/interactions.js` holds a plain `selectedTier` variable (default `'gruppo'`) and:
+`src/scripts/interactions.js` holds a plain `selectedTier` variable, `null` until a card is clicked (no tier is pre-selected on load — `EmailSignup.astro`'s tier label shows `t.signup.noTierSelected` as a placeholder until then), and:
 - Toggles `.is-selected` on `[data-tier]` buttons in `PricingSection.astro` on click, and updates the selected-tier label in `EmailSignup.astro` (`#selected-tier-label`) by reading the clicked button's `data-label` attribute
-- On `#signup-form` submit: `preventDefault()`, hides the form (`hidden` attribute), shows `#signup-confirmation` with the same tier label filled into `#confirmation-tier-label`
+- Toggles `#signup-submit`'s `disabled` state based on whether `#signup-consent` (the consent checkbox, required before submitting) is checked
+- On `#signup-form` submit: `preventDefault()`, runs a basic email-format regex check and bails if it fails, then POSTs to the Google Form's `formResponse` endpoint (`https://docs.google.com/forms/d/e/1FAIpQLSfYgIb8FAjIY7HE80E199N12MEwaKyRa2meLCU-84V7Y1oweQ/formResponse`) via `fetch(..., { mode: 'no-cors' })` with a form-urlencoded body built from `URLSearchParams`. `mode: 'no-cors'` makes the response opaque, so the request is treated as successful once it completes without throwing — there is no way to read Google's actual response status. On success (no thrown error) it hides the form (`hidden` attribute) and shows `#signup-confirmation` with the same tier label filled into `#confirmation-tier-label`; the visitor is never redirected to Google. The three entry IDs (not secrets — Google Forms' `formResponse` endpoint is inherently public/client-facing, no auth involved) map as: `entry.178072810` → email, `entry.1621740816` → `'Acconsento'` when the consent checkbox is checked, `entry.1476714416` → a fixed `PLAN_VALUES[selectedTier]` string (`''` if no tier was ever selected) — these fixed plan strings are independent of the site locale/`signupLabel` copy, since the Google Form itself expects specific Italian option text regardless of which language the visitor is browsing in. If the `fetch` throws, the form stays visible and the error is logged to the console — no dedicated error UI.
 
-`PricingSection.astro` renders each tier's `data-label` from `t.pricing.tiers[].signupLabel` in `src/i18n/{it,en}.ts`, so `interactions.js` itself stays locale-agnostic — it never hardcodes tier copy, it just reads whatever label the current locale's markup put on the button.
+`PricingSection.astro` renders each tier's `data-label` from `t.pricing.tiers[].signupLabel` in `src/i18n/{it,en}.ts`, so `interactions.js` itself stays locale-agnostic for display — it never hardcodes tier *display* copy, it just reads whatever label the current locale's markup put on the button. The `PLAN_VALUES` map used for the Google Form submission is the one exception: those three strings are fixed and not sourced from `src/i18n/*`, since they must match the Form's expected values.
+
+The consent checkbox's label (`t.signup.consentPrefix`/`consentPrivacyLink`/`consentSuffix`), like all other `signup.*` keys, follows the standard it.ts/en.ts sync rule below — no special-casing needed.
 
 ## SEO / social sharing
 
@@ -95,3 +98,4 @@ Italian copy (`src/i18n/it.ts`) is final/verbatim (sourced from the original des
 - The GA4 measurement ID (`G-VF5LV1J8DF`) is a const at the top of `CookieBanner.astro` — update it there if the property ever changes.
 - `PrivacyPolicyPage.astro` and `CookiePolicyPage.astro` (rendered at `/it|en/privacy-policy` and `/it|en/cookie-policy`) are real routes, not markdown-rendered — content lives in `t.legal.privacy` / `t.legal.cookie` in `src/i18n/{it,en}.ts` and is rendered into the `.legal-content` prose layout. The Italian legal text was hand-converted from the legal team's `.md` drafts; the English text is a translation of it — if the Italian legal copy changes (new "last updated" date, retention periods, controller details), update `en.ts` to match.
 - If GA4 tracking changes (new events, different retention, etc.), keep both locales' cookie-policy tables (`t.legal.cookie.technicalTable` / `analyticsTable`) in sync.
+- The `#signup-consent` checkbox in `EmailSignup.astro` (see Interactivity model above) is the "casella di consenso presente nel modulo" / "consent checkbox in the form" that `t.legal.privacy.legalBasisItems` already references as the legal basis for the sign-up form's data processing — if that checkbox's behavior or copy changes, check whether the privacy-policy legal-basis wording still describes it accurately.

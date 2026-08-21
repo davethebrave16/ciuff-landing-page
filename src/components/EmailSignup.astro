@@ -1,5 +1,5 @@
 ---
-import { useTranslations } from '@/i18n/utils'
+import { useTranslations, getLocalePath } from '@/i18n/utils'
 
 interface Props {
 	locale: string
@@ -7,7 +7,6 @@ interface Props {
 
 const { locale } = Astro.props
 const t = useTranslations(locale)
-const defaultTier = t.pricing.tiers.find((tier) => tier.id === 'gruppo')!
 ---
 
 <section id="iscriviti" style="background:#0E3B43; padding:clamp(56px,10vw,96px) clamp(20px,6vw,56px);">
@@ -19,7 +18,16 @@ const defaultTier = t.pricing.tiers.find((tier) => tier.id === 'gruppo')!
 			{t.signup.body}
 		</p>
 
-		<form id="signup-form" class="signup-form">
+		<form id="signup-form" class="signup-form" novalidate>
+			<input
+				type="text"
+				id="signup-website"
+				name="website"
+				tabindex="-1"
+				autocomplete="off"
+				aria-hidden="true"
+				style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0; overflow:hidden;"
+			/>
 			<input
 				type="email"
 				id="signup-email"
@@ -28,10 +36,28 @@ const defaultTier = t.pricing.tiers.find((tier) => tier.id === 'gruppo')!
 				style="width:100%; box-sizing:border-box; font-family:'Space Grotesk',sans-serif; font-size:16px; padding:16px 18px; border-radius:2px; border:none; background:#EAF2EF; color:#0E3B43;"
 			/>
 			<div style="font-size:13px; color:#EAF2EF; opacity:0.6;">
-				{t.signup.selectedTierPrefix} <span id="selected-tier-label" style="color:#C4E538; font-weight:600;">{defaultTier.signupLabel}</span>
+				{t.signup.selectedTierPrefix} <span id="selected-tier-label" style="color:#C4E538; font-weight:600;">{t.signup.noTierSelected}</span>
 			</div>
+			<label style="display:flex; align-items:flex-start; gap:10px; text-align:left; font-size:13px; color:#EAF2EF; opacity:0.8; line-height:1.5;">
+				<input type="checkbox" id="signup-consent" required style="margin-top:3px; flex-shrink:0;" />
+				<span>
+					{t.signup.consentPrefix}<a href={getLocalePath(locale, '/privacy-policy')} style="color:#C4E538; text-decoration:underline;">{t.signup.consentPrivacyLink}</a>{t.signup.consentSuffix}
+				</span>
+			</label>
+			<p
+				id="signup-error"
+				class="signup-error"
+				role="alert"
+				aria-live="polite"
+				hidden
+				data-error-email={t.signup.errorEmail}
+				data-error-tier={t.signup.errorTier}
+				data-error-consent={t.signup.errorConsent}
+				style="color:#FF6B4A; font-size:13px; margin:0; text-align:left;"
+			></p>
 			<button
 				type="submit"
+				id="signup-submit"
 				style="width:100%; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; background:#C4E538; color:#0E3B43; border:none; border-radius:2px; padding:16px;"
 			>
 				{t.signup.submit}
@@ -44,7 +70,7 @@ const defaultTier = t.pricing.tiers.find((tier) => tier.id === 'gruppo')!
 		<div id="signup-confirmation" class="signup-confirmation" hidden style="background:rgba(196,229,56,0.12); border-radius:4px; padding:32px;">
 			<div class="disp" style="font-size:26px; color:#C4E538; margin-bottom:8px;">{t.signup.confirmationTitle}</div>
 			<p style="font-size:15px; color:#EAF2EF; opacity:0.85; margin:0;">
-				{t.signup.confirmationBodyPrefix} <strong id="confirmation-tier-label">{defaultTier.signupLabel}</strong>.
+				{t.signup.confirmationBodyPrefix} <strong id="confirmation-tier-label">{t.signup.noTierSelected}</strong>.
 			</p>
 			<p style="font-size:12px; color:#EAF2EF; opacity:0.55; margin:16px 0 0; line-height:1.5;">
 				{t.signup.disclaimer}

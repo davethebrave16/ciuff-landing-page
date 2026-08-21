@@ -83,11 +83,18 @@ export const it = {
 		body: 'Lasciaci la tua email: ti avviseremo appena pronto e ti terremo aggiornato sul set che preferisci.',
 		emailPlaceholder: 'la-tua-email@esempio.it',
 		selectedTierPrefix: 'Set selezionato:',
+		noTierSelected: 'Nessuno selezionato',
+		consentPrefix: 'Acconsento al trattamento dei miei dati per essere ricontattato riguardo a CIUFF (',
+		consentPrivacyLink: 'Privacy Policy',
+		consentSuffix: ')',
 		submit: 'Avvisami al lancio',
 		disclaimer:
 			"CIUFF è un concept in fase di validazione. Iscrivendoti riceverai solo aggiornamenti sul progetto, nessun obbligo d'acquisto.",
 		confirmationTitle: 'CI SIAMO.',
 		confirmationBodyPrefix: 'Ti scriveremo appena CIUFF è pronto. Set preferito:',
+		errorEmail: 'Inserisci un indirizzo email valido.',
+		errorTier: 'Scegli un set qui sopra prima di iscriverti.',
+		errorConsent: 'Devi acconsentire al trattamento dei dati per continuare.',
 	},
 	footer: {
 		tagline: 'CIUFF — accessori estivi per bottiglie',

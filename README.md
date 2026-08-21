@@ -40,7 +40,7 @@ Deploys are handled by Netlify, connected to this repo (`netlify.toml` sets the 
 
 ## Interactivity
 
-Pricing tier selection and the email signup form are plain vanilla JS (`src/scripts/interactions.js`) — no framework, no backend. Submitting the email form swaps the form for a confirmation message client-side only; nothing is sent anywhere yet.
+Pricing tier selection and the email signup form are plain vanilla JS (`src/scripts/interactions.js`) — no framework, no backend. Submitting the email form does a background `fetch` (`mode: 'no-cors'`) to a Google Form endpoint carrying the email, consent, and selected plan, then swaps in the confirmation message client-side — the visitor is never navigated to Google. A consent checkbox must be checked before the submit button is enabled. See [CLAUDE.md](CLAUDE.md) for the field mapping.
 
 ## Cookie consent
 

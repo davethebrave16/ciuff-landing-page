@@ -83,11 +83,18 @@ export const en = {
 		body: "Leave us your email: we'll let you know as soon as it's ready and keep you posted on the set you prefer.",
 		emailPlaceholder: 'your-email@example.com',
 		selectedTierPrefix: 'Selected set:',
+		noTierSelected: 'None selected',
+		consentPrefix: 'I consent to my data being processed so I can be contacted about CIUFF (',
+		consentPrivacyLink: 'Privacy Policy',
+		consentSuffix: ')',
 		submit: 'Notify me at launch',
 		disclaimer:
 			'CIUFF is a concept currently in validation. Signing up only gets you project updates, with no obligation to buy.',
 		confirmationTitle: "WE'RE ON IT.",
 		confirmationBodyPrefix: "We'll write to you as soon as CIUFF is ready. Preferred set:",
+		errorEmail: 'Please enter a valid email address.',
+		errorTier: 'Choose a set above before signing up.',
+		errorConsent: 'You need to consent to data processing to continue.',
 	},
 	footer: {
 		tagline: 'CIUFF — summer accessories for bottles',
