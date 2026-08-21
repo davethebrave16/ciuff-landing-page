@@ -20,6 +20,14 @@ const resolvedOgImage = new URL(ogImage, Astro.site)
 const otherLocale = locale === 'it' ? 'en' : 'it'
 const itUrl = new URL(Astro.url.pathname.replace(/^\/(it|en)/, '/it'), Astro.site)
 const enUrl = new URL(Astro.url.pathname.replace(/^\/(it|en)/, '/en'), Astro.site)
+
+const organizationJsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'CIUFF',
+	url: new URL('/', Astro.site).toString(),
+	logo: new URL('/android-chrome-512x512.png', Astro.site).toString(),
+}
 ---
 
 <!doctype html>
@@ -70,6 +78,8 @@ const enUrl = new URL(Astro.url.pathname.replace(/^\/(it|en)/, '/en'), Astro.sit
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap"
 			rel="stylesheet"
 		/>
+
+		<script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
 	</head>
 	<body>
 		<slot />

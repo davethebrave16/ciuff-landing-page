@@ -88,7 +88,7 @@ The consent checkbox's label (`t.signup.consentPrefix`/`consentPrivacyLink`/`con
 
 ## SEO / social sharing
 
-- `astro.config.mjs` sets `site: 'https://ciuff.it'` — this is the production domain and is required for `Astro.site`-based absolute URLs (canonical, OG/Twitter image, hreflang) and for `@astrojs/sitemap` to emit correct URLs. If the domain ever changes, update it here (and in `public/robots.txt`'s `Sitemap:` line, which is a static file and isn't generated from `site`).
+- `astro.config.mjs` sets `site: 'https://ciuff.netlify.app'` — this is the production domain (no custom domain is planned) and is required for `Astro.site`-based absolute URLs (canonical, OG/Twitter image, hreflang) and for `@astrojs/sitemap` to emit correct URLs. If the domain ever changes, update it here (and in `public/robots.txt`'s `Sitemap:` line, which is a static file and isn't generated from `site`).
 - `BaseLayout.astro` builds `canonicalUrl`, `resolvedOgImage`, and the `it`/`en`/`x-default` hreflang alternates from `Astro.site` + `Astro.url.pathname` / the `ogImage` prop (defaults to `/og-image.jpg`) — pass a different `ogImage` prop if a future page needs its own preview image.
 - If the logo changes, regenerate the favicon set from the new source image (crop to content bbox, pad into a square, export the sizes listed above) rather than hand-editing the PNGs.
 

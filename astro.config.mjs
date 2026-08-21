@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-	site: 'https://ciuff.it',
+	site: 'https://ciuff.netlify.app',
 	output: 'static',
 	integrations: [
 		sitemap({

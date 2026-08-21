@@ -48,7 +48,7 @@ A bottom banner (`src/components/CookieBanner.astro`) offers **Accetta**/**Rifiu
 
 ## SEO & social sharing
 
-- Production domain: `https://ciuff.it` (set as `site` in `astro.config.mjs`) — used to build the canonical URL and absolute Open Graph/Twitter image URLs.
+- Production domain: `https://ciuff.netlify.app` (set as `site` in `astro.config.mjs`) — used to build the canonical URL and absolute Open Graph/Twitter image URLs.
 - Favicons (`public/favicon.svg`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `android-chrome-*.png`, `site.webmanifest`) were generated from `public/ciuff-icona-trasparente.png` (the source logo mark).
 - `public/og-image.jpg` (1200×630) is the Open Graph / Twitter Card preview image shown when the link is shared — see `BaseLayout.astro` for the meta tags.
 - `@astrojs/sitemap` generates `sitemap-index.xml` at build time; `robots.txt` points to it, for Google indexing.
