@@ -80,7 +80,7 @@ export const en = {
 	},
 	signup: {
 		title: 'BE AMONG THE FIRST TO TRY IT',
-		body: "Leave us your email: we'll let you know as soon as it's ready and keep you posted on the set you prefer.",
+		body: "Leave us your email: you'll help us figure out if CIUFF deserves to happen. If it does, you'll be among the first to know — zero commitment on your part.",
 		emailPlaceholder: 'your-email@example.com',
 		selectedTierPrefix: 'Selected set:',
 		noTierSelected: 'None selected',
@@ -89,9 +89,10 @@ export const en = {
 		consentSuffix: ')',
 		submit: 'Notify me at launch',
 		disclaimer:
-			'CIUFF is a concept currently in validation. Signing up only gets you project updates, with no obligation to buy.',
-		confirmationTitle: "WE'RE ON IT.",
-		confirmationBodyPrefix: "We'll write to you as soon as CIUFF is ready. Preferred set:",
+			"CIUFF is a concept currently in validation: we're only gauging interest, with no commitment on either side.",
+		confirmationTitle: 'THANK YOU!',
+		confirmationBodyPrefix:
+			"You're officially one of the first to raise your hand for CIUFF. If it happens, you'll be first to find out. Preferred set:",
 		errorEmail: 'Please enter a valid email address.',
 		errorTier: 'Choose a set above before signing up.',
 		errorConsent: 'You need to consent to data processing to continue.',

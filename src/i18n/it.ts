@@ -80,7 +80,7 @@ export const it = {
 	},
 	signup: {
 		title: 'SII TRA I PRIMI A PROVARLO',
-		body: 'Lasciaci la tua email: ti avviseremo appena pronto e ti terremo aggiornato sul set che preferisci.',
+		body: 'Lasciaci la tua email: ci aiuti a capire se CIUFF merita di prendere vita. Se succede, sarai tra i primi a saperlo — zero impegno da parte tua.',
 		emailPlaceholder: 'la-tua-email@esempio.it',
 		selectedTierPrefix: 'Set selezionato:',
 		noTierSelected: 'Nessuno selezionato',
@@ -89,9 +89,9 @@ export const it = {
 		consentSuffix: ')',
 		submit: 'Avvisami al lancio',
 		disclaimer:
-			"CIUFF è un concept in fase di validazione. Iscrivendoti riceverai solo aggiornamenti sul progetto, nessun obbligo d'acquisto.",
-		confirmationTitle: 'CI SIAMO.',
-		confirmationBodyPrefix: 'Ti scriveremo appena CIUFF è pronto. Set preferito:',
+			'CIUFF è un concept in fase di validazione: stiamo solo misurando l\'interesse, senza alcun impegno reciproco.',
+		confirmationTitle: 'GRAZIE MILLE!',
+		confirmationBodyPrefix: 'Sei tra i primi ad aver alzato la mano per CIUFF. Se il progetto parte, sarai tra i primi a scoprirlo. Set preferito:',
 		errorEmail: 'Inserisci un indirizzo email valido.',
 		errorTier: 'Scegli un set qui sopra prima di iscriverti.',
 		errorConsent: 'Devi acconsentire al trattamento dei dati per continuare.',
